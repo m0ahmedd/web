@@ -1,0 +1,32 @@
+<%- include("header") -%>
+
+<body>
+    <div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+        <h2> It's a <%= dayKind %></h2>
+        <% if (dayKind !== "Holiday"){ %>
+            <p>Why are you not working!</p>
+        <% } %>
+    </div>
+    <div class="box">
+        <ul>
+            <% for( i  in addedTasks ){ %>
+            <div class="item">
+                <input type="checkbox">
+                <p>
+                    <%= addedTasks[i] %>
+                </p>
+            </div>
+            <% } %>
+
+        </ul>
+        <form class="item" action="/" method="post">
+            <input type="text" name="newTask" placeholder="New Task" autocomplete=off>
+            <button type="submit" name="list" value=<%= listTitle %> >+</button>
+        </form>
+    </div>
+
+<%- include("footer") -%>
+</body>
+
+</html>
