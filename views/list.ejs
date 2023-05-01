@@ -5,28 +5,29 @@
         <h1> <%= listTitle %> </h1>
         <h2> It's a <%= dayKind %></h2>
         <% if (dayKind !== "Holiday"){ %>
-            <p>Why are you not working!</p>
+        <p>Why are you not working!</p>
         <% } %>
     </div>
     <div class="box">
         <ul>
-            <% for( i  in addedTasks ){ %>
-            <div class="item">
-                <input type="checkbox">
-                <p>
-                    <%= addedTasks[i] %>
-                </p>
-            </div>
-            <% } %>
-
+            <% addedTasks.forEach( function (item) {%>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input type="checkbox" name="checkTask" value= <%= item._id %> onChange="this.form.submit()">
+                        <p>
+                            <%= item.name %>
+                        </p>
+                    </div>
+                </form>
+            <% }); %>
         </ul>
         <form class="item" action="/" method="post">
             <input type="text" name="newTask" placeholder="New Task" autocomplete=off>
-            <button type="submit" name="list" value=<%= listTitle %> >+</button>
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
         </form>
     </div>
 
-<%- include("footer") -%>
+    <%- include("footer") -%>
 </body>
 
 </html>
